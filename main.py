@@ -100,6 +100,8 @@ class MainWindow(tk.Frame):
 
         pilha.calcula_densidade_energia(mm1,mm2)
 
+        pilha.calcula_densidade_carga(mm1,mm2)
+
         potencia_pilha = round(pilha.E * pilha.CapCarga , 2)
 
         c = tk.Toplevel(self)
@@ -112,6 +114,7 @@ class MainWindow(tk.Frame):
         capa = round(pilha.CapCarga , 2)
         densi = pilha.DensEnergia
         densi = round(densi,2)
+        densiC = round(pilha.DensCarga,2)
 
         label_0 = Label(c, text="Pilha Criada",width=20,font=("bold", 20))
         label_0.place(x=90,y=53)
@@ -140,6 +143,11 @@ class MainWindow(tk.Frame):
         label_densi.place(x=20,y=330)
         label_densi2 = Label(c, text=(densi,"J/kg"),width=30,font=("bold", 10))
         label_densi2.place(x=180,y=330)
+
+        label_densic = Label(c, text="Densidade de Carga",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=380)
+        label_densic2 = Label(c, text=(densiC,"Ah/kg"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=380)
 
     def select_window(self):
         s = tk.Toplevel(self)

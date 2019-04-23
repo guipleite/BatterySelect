@@ -46,15 +46,19 @@ class Pilha:
         if self.catodo.Eletrons==self.anodo.Eletrons:
             self.coef_catodo = self.catodo.Coef
             self.coef_anodo = self.anodo.Coef
+            self.neletrons = self.catodo.Eletrons
         elif (self.catodo.Eletrons%self.anodo.Eletrons==0):
             self.coef_catodo = self.catodo.Coef
             self.coef_anodo = self.catodo.Eletrons
+            self.neletrons = self.catodo.Eletrons
         elif (self.anodo.Eletrons%self.catodo.Eletrons==0):
             self.coef_anodo = self.anodo.Coef
             self.coef_catodo = self.anodo.Eletrons
+            self.neletrons = self.anodo.Eletrons
         else:
             self.coef_catodo = self.anodo.Eletrons
             self.coef_anodo = self.catodo.Eletrons
+            self.neletrons = self.catodo.Eletrons*self.anodo.Eletrons
 
 
 
@@ -64,7 +68,7 @@ class Pilha:
 
         R = 8.31
         F = 96500
-        n = self.anodo.Eletrons + self.catodo.Eletrons # errado
+        n = self.neletrons
 
         self.E = self.E0 - ((R*self.Temp)/(n*F)) * math.log( ((self.sol_anodo.Concetracao)**self.coef_anodo )/
                                                    ((self.sol_catodo.Concetracao)**self.coef_catodo ) )
@@ -73,7 +77,7 @@ class Pilha:
     def calcula_cap_carga(self):
         # capacidade de carga é número de mols de elétrons vezes a
         # carga em coulomb de 1 eletrons(xNumero de avogrado) %3600(As(C) para Ah)
-        n = self.anodo.Eletrons + self.catodo.Eletrons
+        n = self.neletrons
         self.CapCarga = (n*1.6021E-19*6.0225E23)/3600
 
     def calcula_densidade_energia(self,massa_eletrodo1,massa_eletrodo2):
@@ -82,8 +86,13 @@ class Pilha:
         # Pothora * 3600 = Joule
         self.DensEnergia = ( (Pothora * 3600) ) / (0.001*(float(massa_eletrodo1)+float(massa_eletrodo2)))
 
+    def calcula_densidade_carga(self,massa_eletrodo1,massa_eletrodo2):
+
+        self.DensCarga = self.CapCarga / (0.001*(float(massa_eletrodo1)+float(massa_eletrodo2)))
 
 
+
+## preço, densidade de carga unidade, massas, solução especifica
 
 
 
