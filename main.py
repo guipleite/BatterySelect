@@ -151,56 +151,54 @@ class MainWindow(tk.Frame):
         label_densic2.place(x=180,y=380)
 
     def select_window(self):
-            s = tk.Toplevel(self)
-            s.geometry('500x500')
-            s.wm_title("Selecionar Pilha")
+        s = tk.Toplevel(self)
+        s.geometry('500x500')
+        s.wm_title("Selecionar Pilha")
 
-            label_0 = Label(s, text="Selecionar Pilha",width=20,font=("bold", 20))
-            label_0.place(x=90,y=53)
+        label_0 = Label(s, text="Selecionar Pilha",width=20,font=("bold", 20))
+        label_0.place(x=90,y=53)
 
-            label_ddp = Label(s, text="D.D.P. em Volts desejada",width=30,font=("bold", 10))
-            label_ddp.place(x=40,y=130)
+        label_ddp = Label(s, text="D.D.P. em Volts desejada",width=30,font=("bold", 10))
+        label_ddp.place(x=40,y=130)
 
-            self.entry_ddp = Entry(s)
-            self.entry_ddp.place(x=280,y=130)
+        self.entry_ddp = Entry(s)
+        self.entry_ddp.place(x=280,y=130)
 
-            label_pot = Label(s, text="Potencia desejada ",width=30,font=("bold", 10))
-            label_pot.place(x=40,y=180)
+        label_pot = Label(s, text="Potencia desejada ",width=30,font=("bold", 10))
+        label_pot.place(x=40,y=180)
 
-            self.entry_pot = Entry(s)
-            self.entry_pot.place(x=280,y=180)
+        self.entry_pot = Entry(s)
+        self.entry_pot.place(x=280,y=180)
 
-            label_cap = Label(s, text="Capacidade de Carga desejada",width=30,font=("bold", 10))
-            label_cap.place(x=40,y=230)
+        label_cap = Label(s, text="Capacidade de Carga desejada",width=30,font=("bold", 10))
+        label_cap.place(x=40,y=230)
 
-            self.entry_cap = Entry(s)
-            self.entry_cap.place(x=280,y=230)
+        self.entry_cap = Entry(s)
+        self.entry_cap.place(x=280,y=230)
 
-            
+        label_cons = Label(s, text="Consumo",width=30,font=("bold", 10))
+        label_cons.place(x=40,y=280)
 
-            label_cons = Label(s, text="Consumo",width=30,font=("bold", 10))
-            label_cons.place(x=40,y=280)
-
-            self.entry_cons = Entry(s)
-            self.entry_cons.place(x=280,y=280)
+        self.entry_cons = Entry(s)
+        self.entry_cons.place(x=280,y=280)
 
 
-            label_temp = Label(s, text="Tempo de duracao",width=30,font=("bold", 10))
-            label_temp.place(x=40,y=330)
+        label_temp = Label(s, text="Tempo de duracao",width=30,font=("bold", 10))
+        label_temp.place(x=40,y=330)
 
-            self.entry_temp = Entry(s)
-            self.entry_temp.place(x=280,y=330)
+        self.entry_temp = Entry(s)
+        self.entry_temp.place(x=280,y=330)
 
 
-            label_temp = Label(s, text="A aplicação exige uma durabilidade maior \ncom altas taxas de carga e descarga?",width=60,font=("bold", 10))
-            label_temp.place(x=-100,y=390)
-            self.var1 = IntVar()
-            C1=Checkbutton(s, variable=self.var1, onvalue = 1, offvalue = 0)
-            C1.place(x=330,y=400)
+        label_temp = Label(s, text="A aplicação exige uma durabilidade maior \ncom altas taxas de carga e descarga?",width=60,font=("bold", 10))
+        label_temp.place(x=-100,y=390)
+        self.var1 = IntVar()
+        C1=Checkbutton(s, variable=self.var1, onvalue = 1, offvalue = 0)
+        C1.place(x=330,y=400)
 
-            
-            
-            Button(s, text='Montar Pilha',width=20,bg='brown',fg='white', command=self.crtd_window1).place(x=180,y=470)
+        
+        
+        Button(s, text='Montar Pilha',width=20,bg='brown',fg='white', command=self.crtd_window1).place(x=180,y=470)
 
     def crtd_window1(self):
         g = tk.Toplevel(self)
@@ -226,33 +224,318 @@ class MainWindow(tk.Frame):
 
     
     def crtd1(self):
-        v = tk.Toplevel(self)
-        v.geometry('500x500')
-        v.wm_title("Montar Pilha")
-        #label_cr = Label(v, text=("O preço total das baterias em reais é:",self.ops.selecao1()[0][1]),width=100,font=("bold", 8))
-        #label_cr.place(x=-50,y=80)
+        c = tk.Toplevel(self)
+        c.geometry('500x580')
+        c.wm_title("Pilhas Selecionadas")
+        m=30
+        label_0 = Label(c, text="Pilhas Selecionadas",width=20,font=("bold", 20))
+        label_0.place(x=90,y=10)
 
-        label_cr = Label(v, text="O preço total das baterias é:",width=20,font=("bold", 10))
-        label_cr.place(x=20,y=130)
-        label_cr2 = Label(v, text=(self.ops.selecao1()[0][0],"Reais"),width=30,font=("bold", 10))
-        label_cr2.place(x=180,y=130)
+        label_name = Label(c, text=self.ops.selecao1()[9][0],width=25,font=("bold", 13))
+        label_name.place(x=90,y=60)
+
+        label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
+        label_ddp.place(x=20,y=50+m)
+        label_ddp2 = Label(c, text=(self.ops.selecao1()[0][0],"reais"),width=30,font=("bold", 10))
+        label_ddp2.place(x=180,y=50+m)
+
+        label_esp = Label(c, text="Número de Pilhas",width=20,font=("bold", 10))
+        label_esp.place(x=20,y=70+m)
+        label_esp2 = Label(c, text=(self.ops.selecao1()[3][0]),width=30,font=("bold", 10))
+        label_esp2.place(x=180,y=70+m)
+
+        label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
+        label_capa.place(x=20,y=90+m)
+        label_capa2 = Label(c, text=(self.ops.selecao1()[2][0],"pilhas"),width=30,font=("bold", 10))
+        label_capa2.place(x=180,y=90+m)
+
+        label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
+        label_pot.place(x=20,y=110+m)
+        label_pot2 = Label(c, text=(self.ops.selecao1()[1][0],"pilhas"),width=30,font=("bold", 10))
+        label_pot2.place(x=180,y=110+m)
+
+        label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=130+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[7][0],"Ah"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=130+m)
+
+        label_densic = Label(c, text="DDP",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=150+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[6][0],"Volts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=150+m)
+
+        label_densic = Label(c, text="Potência",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=170+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[8][0],"Watts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=170+m)
+
+        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
+        label_densi.place(x=20,y=190+m)
+        label_densi2 = Label(c, text=(self.ops.selecao1()[4][0],"hora(s)"),width=30,font=("bold", 10))
+        label_densi2.place(x=180,y=190+m)
+
+        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[5][0]),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=210+m)
+
+        label_name = Label(c, text=self.ops.selecao1()[9][0],width=25,font=("bold", 13))
+        label_name.place(x=90,y=60+m+210+m)
+
+        label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
+        label_ddp.place(x=20,y=50+m+m+210+m)
+        label_ddp2 = Label(c, text=(self.ops.selecao1()[0][1],"reais"),width=30,font=("bold", 10))
+        label_ddp2.place(x=180,y=50+m+m+210+m)
+
+        label_esp = Label(c, text="Número de Pilhas",width=20,font=("bold", 10))
+        label_esp.place(x=20,y=70+m+m+210+m)
+        label_esp2 = Label(c, text=(self.ops.selecao1()[3][1]),width=30,font=("bold", 10))
+        label_esp2.place(x=180,y=70+m+m+210+m)
+
+        label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
+        label_capa.place(x=20,y=90+m+m+210+m)
+        label_capa2 = Label(c, text=(self.ops.selecao1()[2][1],"pilhas"),width=30,font=("bold", 10))
+        label_capa2.place(x=180,y=90+m+m+210+m)
+
+        label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
+        label_pot.place(x=20,y=110+m+m+210+m)
+        label_pot2 = Label(c, text=(self.ops.selecao1()[1][1],"pilhas"),width=30,font=("bold", 10))
+        label_pot2.place(x=180,y=110+m+m+210+m)
+
+        label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=130+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[7][1],"Ah"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=130+m+m+210+m)
+
+        label_densic = Label(c, text="DDP",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=150+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[6][1],"Volts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=150+m+m+210+m)
+
+        label_densic = Label(c, text="Potência",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=170+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[8][1],"Watts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=170+m+m+210+m)
+
+        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
+        label_densi.place(x=20,y=190+m+m+210+m)
+        label_densi2 = Label(c, text=(self.ops.selecao1()[4][1],"hora(s)"),width=30,font=("bold", 10))
+        label_densi2.place(x=180,y=190+m+m+210+m)
+
+        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=210+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao1()[5][1]),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=210+m+m+210+m)
 
 
 
     def crtd2(self):
-        x = tk.Toplevel(self)
-        x.geometry('500x500')
-        x.wm_title("Montar Pilha")
-        label_cr = Label(x, text=self.ops.selecao2(),width=100,font=("bold", 8))
-        label_cr.place(x=-50,y=80)
+        c = tk.Toplevel(self)
+        c.geometry('500x580')
+        c.wm_title("Pilhas Selecionadas")
+        m=30
+        label_0 = Label(c, text="Pilhas Selecionadas",width=20,font=("bold", 20))
+        label_0.place(x=90,y=10)
 
+        label_name = Label(c, text=self.ops.selecao2()[9][0],width=25,font=("bold", 13))
+        label_name.place(x=90,y=60)
+
+        label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
+        label_ddp.place(x=20,y=50+m)
+        label_ddp2 = Label(c, text=(self.ops.selecao2()[0][0],"reais"),width=30,font=("bold", 10))
+        label_ddp2.place(x=180,y=50+m)
+
+        label_esp = Label(c, text="Número de Pilhas",width=20,font=("bold", 10))
+        label_esp.place(x=20,y=70+m)
+        label_esp2 = Label(c, text=(self.ops.selecao2()[3][0]),width=30,font=("bold", 10))
+        label_esp2.place(x=180,y=70+m)
+
+        label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
+        label_capa.place(x=20,y=90+m)
+        label_capa2 = Label(c, text=(self.ops.selecao2()[2][0],"pilhas"),width=30,font=("bold", 10))
+        label_capa2.place(x=180,y=90+m)
+
+        label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
+        label_pot.place(x=20,y=110+m)
+        label_pot2 = Label(c, text=(self.ops.selecao2()[1][0],"pilhas"),width=30,font=("bold", 10))
+        label_pot2.place(x=180,y=110+m)
+
+        label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=130+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[7][0],"Ah"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=130+m)
+
+        label_densic = Label(c, text="DDP",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=150+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[6][0],"Volts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=150+m)
+
+        label_densic = Label(c, text="Potência",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=170+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[8][0],"Watts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=170+m)
+
+        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
+        label_densi.place(x=20,y=190+m)
+        label_densi2 = Label(c, text=(self.ops.selecao2()[4][0],"hora(s)"),width=30,font=("bold", 10))
+        label_densi2.place(x=180,y=190+m)
+
+        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[5][0]),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=210+m)
+
+        label_name = Label(c, text=self.ops.selecao2()[9][0],width=25,font=("bold", 13))
+        label_name.place(x=90,y=60+m+210+m)
+
+        label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
+        label_ddp.place(x=20,y=50+m+m+210+m)
+        label_ddp2 = Label(c, text=(self.ops.selecao2()[0][1],"reais"),width=30,font=("bold", 10))
+        label_ddp2.place(x=180,y=50+m+m+210+m)
+
+        label_esp = Label(c, text="Número de Pilhas",width=20,font=("bold", 10))
+        label_esp.place(x=20,y=70+m+m+210+m)
+        label_esp2 = Label(c, text=(self.ops.selecao2()[3][1]),width=30,font=("bold", 10))
+        label_esp2.place(x=180,y=70+m+m+210+m)
+
+        label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
+        label_capa.place(x=20,y=90+m+m+210+m)
+        label_capa2 = Label(c, text=(self.ops.selecao2()[2][1],"pilhas"),width=30,font=("bold", 10))
+        label_capa2.place(x=180,y=90+m+m+210+m)
+
+        label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
+        label_pot.place(x=20,y=110+m+m+210+m)
+        label_pot2 = Label(c, text=(self.ops.selecao2()[1][1],"pilhas"),width=30,font=("bold", 10))
+        label_pot2.place(x=180,y=110+m+m+210+m)
+
+        label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=130+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[7][1],"Ah"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=130+m+m+210+m)
+
+        label_densic = Label(c, text="DDP",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=150+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[6][1],"Volts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=150+m+m+210+m)
+
+        label_densic = Label(c, text="Potência",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=170+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[8][1],"Watts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=170+m+m+210+m)
+
+        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
+        label_densi.place(x=20,y=190+m+m+210+m)
+        label_densi2 = Label(c, text=(self.ops.selecao2()[4][1],"hora(s)"),width=30,font=("bold", 10))
+        label_densi2.place(x=180,y=190+m+m+210+m)
+
+        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=210+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao2()[5][1]),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=210+m+m+210+m)
 
     def crtd3(self):
-        z = tk.Toplevel(self)
-        z.geometry('500x500')
-        z.wm_title("Montar Pilha")
-        label_cr = Label(z, text=self.ops.selecao3(),width=100,font=("bold", 8))
-        label_cr.place(x=-50,y=80)
+        c = tk.Toplevel(self)
+        c.geometry('500x580')
+        c.wm_title("Pilhas Selecionadas")
+        m=30
+        label_0 = Label(c, text="Pilhas Selecionadas",width=20,font=("bold", 20))
+        label_0.place(x=90,y=10)
+
+        label_name = Label(c, text=self.ops.selecao3()[9][0],width=25,font=("bold", 13))
+        label_name.place(x=90,y=60)
+
+        label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
+        label_ddp.place(x=20,y=50+m)
+        label_ddp2 = Label(c, text=(self.ops.selecao3()[0][0],"reais"),width=30,font=("bold", 10))
+        label_ddp2.place(x=180,y=50+m)
+
+        label_esp = Label(c, text="Número de Pilhas",width=20,font=("bold", 10))
+        label_esp.place(x=20,y=70+m)
+        label_esp2 = Label(c, text=(self.ops.selecao3()[3][0]),width=30,font=("bold", 10))
+        label_esp2.place(x=180,y=70+m)
+
+        label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
+        label_capa.place(x=20,y=90+m)
+        label_capa2 = Label(c, text=(self.ops.selecao3()[2][0],"pilhas"),width=30,font=("bold", 10))
+        label_capa2.place(x=180,y=90+m)
+
+        label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
+        label_pot.place(x=20,y=110+m)
+        label_pot2 = Label(c, text=(self.ops.selecao3()[1][0],"pilhas"),width=30,font=("bold", 10))
+        label_pot2.place(x=180,y=110+m)
+
+        label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=130+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[7][0],"Ah"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=130+m)
+
+        label_densic = Label(c, text="DDP",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=150+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[6][0],"Volts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=150+m)
+
+        label_densic = Label(c, text="Potência",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=170+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[8][0],"Watts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=170+m)
+
+        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
+        label_densi.place(x=20,y=190+m)
+        label_densi2 = Label(c, text=(self.ops.selecao3()[4][0],"hora(s)"),width=30,font=("bold", 10))
+        label_densi2.place(x=180,y=190+m)
+
+        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[5][0]),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=210+m)
+
+        label_name = Label(c, text=self.ops.selecao3()[9][1],width=25,font=("bold", 13))
+        label_name.place(x=90,y=60+m+210+m)
+
+        label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
+        label_ddp.place(x=20,y=50+m+m+210+m)
+        label_ddp2 = Label(c, text=(self.ops.selecao3()[0][1],"reais"),width=30,font=("bold", 10))
+        label_ddp2.place(x=180,y=50+m+m+210+m)
+
+        label_esp = Label(c, text="Número de Pilhas",width=20,font=("bold", 10))
+        label_esp.place(x=20,y=70+m+m+210+m)
+        label_esp2 = Label(c, text=(self.ops.selecao3()[3][1]),width=30,font=("bold", 10))
+        label_esp2.place(x=180,y=70+m+m+210+m)
+
+        label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
+        label_capa.place(x=20,y=90+m+m+210+m)
+        label_capa2 = Label(c, text=(self.ops.selecao3()[2][1],"pilhas"),width=30,font=("bold", 10))
+        label_capa2.place(x=180,y=90+m+m+210+m)
+
+        label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
+        label_pot.place(x=20,y=110+m+m+210+m)
+        label_pot2 = Label(c, text=(self.ops.selecao3()[1][1],"pilhas"),width=30,font=("bold", 10))
+        label_pot2.place(x=180,y=110+m+m+210+m)
+
+        label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=130+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[7][1],"Ah"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=130+m+m+210+m)
+
+        label_densic = Label(c, text="DDP",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=150+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[6][1],"Volts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=150+m+m+210+m)
+
+        label_densic = Label(c, text="Potência",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=170+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[8][1],"Watts"),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=170+m+m+210+m)
+
+        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
+        label_densi.place(x=20,y=190+m+m+210+m)
+        label_densi2 = Label(c, text=(self.ops.selecao3()[4][1],"hora(s)"),width=30,font=("bold", 10))
+        label_densi2.place(x=180,y=190+m+m+210+m)
+
+        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=210+m+m+210+m)
+        label_densic2 = Label(c, text=(self.ops.selecao3()[5][1]),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=210+m+m+210+m)
     
 
 if __name__ == "__main__":
