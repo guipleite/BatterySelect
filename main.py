@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from classes import *
+import select
 
 class MainWindow(tk.Frame):
     counter = 0
@@ -150,69 +151,109 @@ class MainWindow(tk.Frame):
         label_densic2.place(x=180,y=380)
 
     def select_window(self):
-        s = tk.Toplevel(self)
-        s.geometry('500x500')
-        s.wm_title("Selecionar Pilha")
+            s = tk.Toplevel(self)
+            s.geometry('500x500')
+            s.wm_title("Selecionar Pilha")
 
-        label_0 = Label(s, text="Selecionar Pilha",width=20,font=("bold", 20))
-        label_0.place(x=90,y=53)
+            label_0 = Label(s, text="Selecionar Pilha",width=20,font=("bold", 20))
+            label_0.place(x=90,y=53)
 
-        label_ddp = Label(s, text="D.D.P. em Volts desejada",width=30,font=("bold", 10))
-        label_ddp.place(x=40,y=130)
+            label_ddp = Label(s, text="D.D.P. em Volts desejada",width=30,font=("bold", 10))
+            label_ddp.place(x=40,y=130)
 
-        entry_ddp = Entry(s)
-        entry_ddp.place(x=280,y=130)
+            self.entry_ddp = Entry(s)
+            self.entry_ddp.place(x=280,y=130)
 
-        label_pot = Label(s, text="Potência desejada ",width=30,font=("bold", 10))
-        label_pot.place(x=40,y=180)
+            label_pot = Label(s, text="Potencia desejada ",width=30,font=("bold", 10))
+            label_pot.place(x=40,y=180)
 
-        entry_pot = Entry(s)
-        entry_pot.place(x=280,y=180)
+            self.entry_pot = Entry(s)
+            self.entry_pot.place(x=280,y=180)
 
-        label_cap = Label(s, text="Capacidade de Carga desejada",width=30,font=("bold", 10))
-        label_cap.place(x=40,y=230)
+            label_cap = Label(s, text="Capacidade de Carga desejada",width=30,font=("bold", 10))
+            label_cap.place(x=40,y=230)
 
-        entry_cap = Entry(s)
-        entry_cap.place(x=280,y=230)
+            self.entry_cap = Entry(s)
+            self.entry_cap.place(x=280,y=230)
 
-        label_temp = Label(s, text="Tempo de duração",width=30,font=("bold", 10))
-        label_temp.place(x=40,y=280)
+            
 
-        entry_temp = Entry(s)
-        entry_temp.place(x=280,y=280)
+            label_cons = Label(s, text="Consumo",width=30,font=("bold", 10))
+            label_cons.place(x=40,y=280)
 
-        Button(s, text='Procurar Pilha',width=20,bg='brown',fg='white',command=self.found_window).place(x=180,y=470)
-
-    def found_window(self):
-        s = tk.Toplevel(self)
-        s.geometry('500x500')
-        s.wm_title("Selecionar Pilha")
-
-        ddp = self.entry_ddp.get()
-        pot = self.entry_pot.get()
-        cap = self.entry_cap.get()
-        time = self.entry_temp.get()
-
-        Button(s, text='Procurar Pilha',width=20,bg='brown',fg='white',command=self.final_window).place(x=180,y=470)
+            self.entry_cons = Entry(s)
+            self.entry_cons.place(x=280,y=280)
 
 
-    def final_window(self):
+            label_temp = Label(s, text="Tempo de duracao",width=30,font=("bold", 10))
+            label_temp.place(x=40,y=330)
 
-        ddp = self.entry_ddp.get()
-        pot = self.entry_pot.get()
-        cap = self.entry_cap.get()
-        time = self.entry_temp.get()
+            self.entry_temp = Entry(s)
+            self.entry_temp.place(x=280,y=330)
 
-        s = tk.Toplevel(self)
-        s.geometry('500x500')
-        s.wm_title("Pilha Final")
 
-        label_0 = Label(s, text=("Pilha Final",preco),width=20,font=("bold", 20))
-        label_0.place(x=90,y=53)
+            label_temp = Label(s, text="A aplicação exige uma durabilidade maior \ncom altas taxas de carga e descarga?",width=60,font=("bold", 10))
+            label_temp.place(x=-100,y=390)
+            self.var1 = IntVar()
+            C1=Checkbutton(s, variable=self.var1, onvalue = 1, offvalue = 0)
+            C1.place(x=330,y=400)
 
-        label_ddp = Label(s, text="Preço",width=30,font=("bold", 10))
-        label_ddp.place(x=40,y=130)
+            
+            
+            Button(s, text='Montar Pilha',width=20,bg='brown',fg='white', command=self.crtd_window1).place(x=180,y=470)
 
+    def crtd_window1(self):
+        g = tk.Toplevel(self)
+        g.geometry('500x500')
+        g.wm_title("Montar Pilha")
+
+        self.ops = select.Seleciona_pilha(float(self.entry_ddp.get()), float(self.entry_pot.get()), float(self.entry_cap.get()), float(self.entry_temp.get()), float(self.entry_cons.get()), self.var1.get())
+
+        label_0 = Label(g, text="Melhores Opções",width=20,font=("bold", 20))
+        label_0.place(x=90,y=30)
+        
+        label_op1 = Label(g, text=self.ops.tresops()[0],width=100,font=("bold", 8))
+        label_op1.place(x=-50,y=80)
+        Button(g, text='Selecionar',width=20,bg='brown',fg='white', command=self.crtd1).place(x=180,y=190)
+
+        label_op2 = Label(g, text=self.ops.tresops()[1],width=100,font=("bold", 8))
+        label_op2.place(x=-50,y=220)
+        Button(g, text='Selecionar',width=20,bg='brown',fg='white', command=self.crtd2).place(x=180,y=330)
+
+        label_op3 = Label(g, text=self.ops.tresops()[2],width=100,font=("bold", 8))
+        label_op3.place(x=-50,y=360)
+        Button(g, text='Selecionar',width=20,bg='brown',fg='white', command=self.crtd3).place(x=180,y=470)
+
+    
+    def crtd1(self):
+        v = tk.Toplevel(self)
+        v.geometry('500x500')
+        v.wm_title("Montar Pilha")
+        #label_cr = Label(v, text=("O preço total das baterias em reais é:",self.ops.selecao1()[0][1]),width=100,font=("bold", 8))
+        #label_cr.place(x=-50,y=80)
+
+        label_cr = Label(v, text="O preço total das baterias é:",width=20,font=("bold", 10))
+        label_cr.place(x=20,y=130)
+        label_cr2 = Label(v, text=(self.ops.selecao1()[0][0],"Reais"),width=30,font=("bold", 10))
+        label_cr2.place(x=180,y=130)
+
+
+
+    def crtd2(self):
+        x = tk.Toplevel(self)
+        x.geometry('500x500')
+        x.wm_title("Montar Pilha")
+        label_cr = Label(x, text=self.ops.selecao2(),width=100,font=("bold", 8))
+        label_cr.place(x=-50,y=80)
+
+
+    def crtd3(self):
+        z = tk.Toplevel(self)
+        z.geometry('500x500')
+        z.wm_title("Montar Pilha")
+        label_cr = Label(z, text=self.ops.selecao3(),width=100,font=("bold", 8))
+        label_cr.place(x=-50,y=80)
+    
 
 if __name__ == "__main__":
     root = tk.Tk()
