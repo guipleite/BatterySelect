@@ -164,26 +164,26 @@ class MainWindow(tk.Frame):
         self.entry_ddp = Entry(s)
         self.entry_ddp.place(x=280,y=130)
 
-        label_pot = Label(s, text="Potencia desejada ",width=30,font=("bold", 10))
+        label_pot = Label(s, text="Potencia desejada (Watts) ",width=30,font=("bold", 10))
         label_pot.place(x=40,y=180)
 
         self.entry_pot = Entry(s)
         self.entry_pot.place(x=280,y=180)
 
-        label_cap = Label(s, text="Capacidade de Carga desejada",width=30,font=("bold", 10))
+        label_cap = Label(s, text="Capacidade de Carga desejada (Ah)",width=30,font=("bold", 10))
         label_cap.place(x=40,y=230)
 
         self.entry_cap = Entry(s)
         self.entry_cap.place(x=280,y=230)
 
-        label_cons = Label(s, text="Consumo",width=30,font=("bold", 10))
+        label_cons = Label(s, text="Consumo (A) (Se não souber digite -1)",width=30,font=("bold", 10))
         label_cons.place(x=40,y=280)
 
         self.entry_cons = Entry(s)
         self.entry_cons.place(x=280,y=280)
 
 
-        label_temp = Label(s, text="Tempo de duracao",width=30,font=("bold", 10))
+        label_temp = Label(s, text="Tempo de duracao (Hora)",width=30,font=("bold", 10))
         label_temp.place(x=40,y=330)
 
         self.entry_temp = Entry(s)
@@ -269,16 +269,6 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao1()[8][0],"Watts"),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=170+m)
 
-        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
-        label_densi.place(x=20,y=190+m)
-        label_densi2 = Label(c, text=(self.ops.selecao1()[4][0],"hora(s)"),width=30,font=("bold", 10))
-        label_densi2.place(x=180,y=190+m)
-
-        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
-        label_densic.place(x=20,y=210+m)
-        label_densic2 = Label(c, text=(self.ops.selecao1()[5][0]),width=30,font=("bold", 10))
-        label_densic2.place(x=180,y=210+m)
-
         label_name = Label(c, text=self.ops.selecao1()[9][1],width=30,font=("bold", 13))
         label_name.place(x=90,y=60+m+210+m)
 
@@ -317,17 +307,48 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao1()[8][1],"Watts"),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=170+m+m+210+m)
 
-        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
-        label_densi.place(x=20,y=190+m+m+210+m)
-        label_densi2 = Label(c, text=(self.ops.selecao1()[4][1],"hora(s)"),width=30,font=("bold", 10))
-        label_densi2.place(x=180,y=190+m+m+210+m)
+        if float(self.entry_cons.get()) == -1:
+            label_densi = Label(c, text="Tempo Ligado",width=20,font=("bold", 10))
+            label_densi.place(x=20,y=190+m)
+            label_densi2 = Label(c, text=(self.ops.selecao1()[4][0],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m)
 
-        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
-        label_densic.place(x=20,y=210+m+m+210+m)
-        label_densic2 = Label(c, text=(self.ops.selecao1()[5][1]),width=30,font=("bold", 10))
-        label_densic2.place(x=180,y=210+m+m+210+m)
+            label_densi = Label(c, text="Tempo Ligado",width=20,font=("bold", 10))
+            label_densi.place(x=20,y=190+m+m+210+m)
+            label_densi2 = Label(c, text=(self.ops.selecao1()[4][1],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m+m+210+m)
+        
+            label_densic = Label(c, text="Consumo",width=20,font=("bold", 10))
+            label_densic.place(x=20,y=210+m+m+210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao1()[10][1], "A"),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m+m+210+m)
 
+            label_densic = Label(c, text="Consumo",width=20,font=("bold", 10))
+            label_densic.place(x=20,y=210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao1()[10][0], "A"),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m)
 
+        else:
+            label_densi = Label(c, text="Tempo Até Bateria Esgotar",width=19,font=("bold", 10))
+            label_densi.place(x=20,y=190+m)
+            label_densi2 = Label(c, text=(self.ops.selecao1()[4][0],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m)
+
+            label_densi = Label(c, text="Tempo Até Bateria Esgotar",width=19,font=("bold", 10))
+            label_densi.place(x=20,y=190+m+m+210+m)
+            label_densi2 = Label(c, text=(self.ops.selecao1()[4][1],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m+m+210+m)
+
+            label_densic = Label(c, text="Porcentagem da bateria gasta\n no tempo selecionado",width=27,font=("bold", 8))
+            label_densic.place(x=20,y=210+m+m+210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao1()[5][1]),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m+m+210+m)
+
+            label_densic = Label(c, text="Porcentagem da bateria gasta\n no tempo selecionado",width=27,font=("bold", 8))
+            label_densic.place(x=20,y=210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao1()[5][0]),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m)
+    
 
     def crtd2(self):
         c = tk.Toplevel(self)
@@ -375,16 +396,6 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao2()[8][0],"Watts"),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=170+m)
 
-        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
-        label_densi.place(x=20,y=190+m)
-        label_densi2 = Label(c, text=(self.ops.selecao2()[4][0],"hora(s)"),width=30,font=("bold", 10))
-        label_densi2.place(x=180,y=190+m)
-
-        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
-        label_densic.place(x=20,y=210+m)
-        label_densic2 = Label(c, text=(self.ops.selecao2()[5][0]),width=30,font=("bold", 10))
-        label_densic2.place(x=180,y=210+m)
-
         label_name = Label(c, text=self.ops.selecao2()[9][1],width=25,font=("bold", 13))
         label_name.place(x=90,y=60+m+210+m)
 
@@ -423,16 +434,49 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao2()[8][1],"Watts"),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=170+m+m+210+m)
 
-        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
-        label_densi.place(x=20,y=190+m+m+210+m)
-        label_densi2 = Label(c, text=(self.ops.selecao2()[4][1],"hora(s)"),width=30,font=("bold", 10))
-        label_densi2.place(x=180,y=190+m+m+210+m)
+        if float(self.entry_cons.get()) == -1:
+            label_densi = Label(c, text="Tempo Ligado",width=20,font=("bold", 10))
+            label_densi.place(x=20,y=190+m)
+            label_densi2 = Label(c, text=(self.ops.selecao2()[4][0],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m)
 
-        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
-        label_densic.place(x=20,y=210+m+m+210+m)
-        label_densic2 = Label(c, text=(self.ops.selecao2()[5][1]),width=30,font=("bold", 10))
-        label_densic2.place(x=180,y=210+m+m+210+m)
+            label_densi = Label(c, text="Tempo Ligado",width=20,font=("bold", 10))
+            label_densi.place(x=20,y=190+m+m+210+m)
+            label_densi2 = Label(c, text=(self.ops.selecao2()[4][1],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m+m+210+m)
+        
+            label_densic = Label(c, text="Consumo",width=20,font=("bold", 10))
+            label_densic.place(x=20,y=210+m+m+210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao2()[10][1], "A"),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m+m+210+m)
 
+            label_densic = Label(c, text="Consumo",width=20,font=("bold", 10))
+            label_densic.place(x=20,y=210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao2()[10][0], "A"),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m)
+
+        else:
+            label_densi = Label(c, text="Tempo Até Bateria Esgotar",width=19,font=("bold", 10))
+            label_densi.place(x=20,y=190+m)
+            label_densi2 = Label(c, text=(self.ops.selecao2()[4][0],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m)
+
+            label_densi = Label(c, text="Tempo Até Bateria Esgotar",width=19,font=("bold", 10))
+            label_densi.place(x=20,y=190+m+m+210+m)
+            label_densi2 = Label(c, text=(self.ops.selecao2()[4][1],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m+m+210+m)
+
+            label_densic = Label(c, text="Porcentagem da bateria gasta\n no tempo selecionado",width=27,font=("bold", 8))
+            label_densic.place(x=20,y=210+m+m+210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao2()[5][1]),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m+m+210+m)
+
+            label_densic = Label(c, text="Porcentagem da bateria gasta\n no tempo selecionado",width=27,font=("bold", 8))
+            label_densic.place(x=20,y=210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao2()[5][0]),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m)
+
+ 
     def crtd3(self):
         c = tk.Toplevel(self)
         c.geometry('500x580')
@@ -479,15 +523,6 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao3()[8][0],"Watts"),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=170+m)
 
-        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
-        label_densi.place(x=20,y=190+m)
-        label_densi2 = Label(c, text=(self.ops.selecao3()[4][0],"hora(s)"),width=30,font=("bold", 10))
-        label_densi2.place(x=180,y=190+m)
-
-        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
-        label_densic.place(x=20,y=210+m)
-        label_densic2 = Label(c, text=(self.ops.selecao3()[5][0]),width=30,font=("bold", 10))
-        label_densic2.place(x=180,y=210+m)
 
         label_name = Label(c, text=self.ops.selecao3()[9][1],width=30,font=("bold", 13))
         label_name.place(x=90,y=60+m+210+m)
@@ -527,15 +562,47 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao3()[8][1],"Watts"),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=170+m+m+210+m)
 
-        label_densi = Label(c, text="Tempo Máximo",width=20,font=("bold", 10))
-        label_densi.place(x=20,y=190+m+m+210+m)
-        label_densi2 = Label(c, text=(self.ops.selecao3()[4][1],"hora(s)"),width=30,font=("bold", 10))
-        label_densi2.place(x=180,y=190+m+m+210+m)
+        if float(self.entry_cons.get()) == -1:
+            label_densi = Label(c, text="Tempo Ligado",width=20,font=("bold", 10))
+            label_densi.place(x=20,y=190+m)
+            label_densi2 = Label(c, text=(self.ops.selecao3()[4][0],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m)
 
-        label_densic = Label(c, text="Relação",width=20,font=("bold", 10))
-        label_densic.place(x=20,y=210+m+m+210+m)
-        label_densic2 = Label(c, text=(self.ops.selecao3()[5][1]),width=30,font=("bold", 10))
-        label_densic2.place(x=180,y=210+m+m+210+m)
+            label_densi = Label(c, text="Tempo Ligado",width=20,font=("bold", 10))
+            label_densi.place(x=20,y=190+m+m+210+m)
+            label_densi2 = Label(c, text=(self.ops.selecao3()[4][1],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m+m+210+m)
+        
+            label_densic = Label(c, text="Consumo",width=20,font=("bold", 10))
+            label_densic.place(x=20,y=210+m+m+210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao3()[10][1], "A"),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m+m+210+m)
+
+            label_densic = Label(c, text="Consumo",width=20,font=("bold", 10))
+            label_densic.place(x=20,y=210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao3()[10][0], "A"),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m)
+
+        else:
+            label_densi = Label(c, text="Tempo Até Bateria Esgotar",width=19,font=("bold", 10))
+            label_densi.place(x=20,y=190+m)
+            label_densi2 = Label(c, text=(self.ops.selecao3()[4][0],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m)
+
+            label_densi = Label(c, text="Tempo Até Bateria Esgotar",width=19,font=("bold", 10))
+            label_densi.place(x=20,y=190+m+m+210+m)
+            label_densi2 = Label(c, text=(self.ops.selecao3()[4][1],"hora(s)"),width=30,font=("bold", 10))
+            label_densi2.place(x=180,y=190+m+m+210+m)
+
+            label_densic = Label(c, text="Porcentagem da bateria gasta\n no tempo selecionado",width=27,font=("bold", 8))
+            label_densic.place(x=20,y=210+m+m+210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao3()[5][1]),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m+m+210+m)
+
+            label_densic = Label(c, text="Porcentagem da bateria gasta\n no tempo selecionado",width=27,font=("bold", 8))
+            label_densic.place(x=20,y=210+m)
+            label_densic2 = Label(c, text=(self.ops.selecao3()[5][0]),width=30,font=("bold", 10))
+            label_densic2.place(x=180,y=210+m)
     
 
 if __name__ == "__main__":
