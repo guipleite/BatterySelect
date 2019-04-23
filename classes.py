@@ -9,6 +9,8 @@ class Metal:
         self.Coef = coef
         self.Eletrons = eletrons
         self.MMolar = mmolar
+        self.csol = mmolar + (eletrons*35.5) #concentração da solução com cloreto
+
 
 
 class Solucoes:
@@ -20,25 +22,32 @@ class Solucoes:
 
 class Pilha:
 
-    def __init__(self,metal1,metal2,solucao1,solucao2,temperatura):
+    def __init__(self,metal1,metal2,massametal1,massametal2,solucao1,solucao2,temperatura):
         self.Metal1 = metal1
         self.Metal2 = metal2
+        self.MassaMetal1 = float(massametal1)
+        self.MassaMetal2 = float(massametal2)
         self.Solucao1 = solucao1
         self.Solucao2 = solucao2
         self.Temp = int(temperatura) + 273 # C para K
+        self.V = 0.1
 
 
     def catado_anodo(self):
         if(self.Metal1.Ered>self.Metal2.Ered):
             self.catodo = self.Metal1
+            self.massa_catodo = self.MassaMetal1
             self.sol_catodo = self.Solucao1
             self.anodo = self.Metal2
+            self.massa_anodo = self.MassaMetal2
             self.sol_anodo = self.Solucao2
             self.E0 = self.Metal1.Ered - self.Metal2.Ered
         else:
             self.catodo = self.Metal2
+            self.massa_catodo = self.MassaMetal2
             self.sol_catodo = self.Solucao2
             self.anodo = self.Metal1
+            self.massa_anodo = self.MassaMetal1
             self.sol_anodo = self.Solucao1
             self.E0 = self.Metal2.Ered - self.Metal1.Ered
 
@@ -60,6 +69,8 @@ class Pilha:
             self.coef_anodo = self.catodo.Eletrons
             self.neletrons = self.catodo.Eletrons*self.anodo.Eletrons
 
+        self.rel_cat_eletrons = self.neletrons/self.coef_catodo
+
 
 
 
@@ -68,32 +79,33 @@ class Pilha:
 
         R = 8.31
         F = 96500
-        n = self.neletrons
+        self.n = self.rel_cat_eletrons*((self.massa_catodo)/self.catodo.MMolar)
 
-        self.E = self.E0 - ((R*self.Temp)/(n*F)) * math.log( ((self.sol_anodo.Concetracao)**self.coef_anodo )/
+        self.E = self.E0 - ((R*self.Temp)/(self.n*F)) * math.log( ((self.sol_anodo.Concetracao)**self.coef_anodo )/
                                                    ((self.sol_catodo.Concetracao)**self.coef_catodo ) )
 
 
     def calcula_cap_carga(self):
         # capacidade de carga é número de mols de elétrons vezes a
         # carga em coulomb de 1 eletrons(xNumero de avogrado) %3600(As(C) para Ah)
-        n = self.neletrons
-        self.CapCarga = (n*1.6021E-19*6.0225E23)/3600
+        self.CapCarga = (self.n*96500)/3600
 
-    def calcula_densidade_energia(self,massa_eletrodo1,massa_eletrodo2):
+    def calcula_densidade_carga(self):
+        massa_solcatodo = (self.sol_catodo.Concetracao*self.V)*self.catodo.csol
+        massa_solanodo = (self.sol_anodo.Concetracao*self.V)*self.anodo.csol
+        self.DensCarga = (self.n*96500)/((self.massa_anodo+self.massa_catodo+massa_solcatodo+massa_solanodo)*0.001)
+        
 
-        Pothora = self.CapCarga * self.E
-        # Pothora * 3600 = Joule
-        self.DensEnergia = ( (Pothora * 3600) ) / (0.001*(float(massa_eletrodo1)+float(massa_eletrodo2)))
+    def calcula_densidade_energia(self):
 
-    def calcula_densidade_carga(self,massa_eletrodo1,massa_eletrodo2):
-
-        self.DensCarga = self.CapCarga / (0.001*(float(massa_eletrodo1)+float(massa_eletrodo2)))
-
+        self.DensEnergia = self.DensCarga*self.E
 
 
-## preço, densidade de carga unidade, massas, solução especifica
 
+
+
+
+# 3 - precificar
 
 
 Ferro2 = Metal("Ferro(2+)",-0.44,1,2,56)
@@ -105,6 +117,6 @@ Niquel = Metal("Níquel",-0.23,1,2,58.7)
 Chumbo = Metal("Chumbo",-0.13,1,2,207)
 Prata = Metal("Prata",0.80,1,1,108)
 Cobalto = Metal("Cobalto",-0.28,1,2,59)
-Aluminio = Metal("Alumínio",-1.66,1,3,27)
+Zinco = Metal("Zinco",-0.76,1,2,65.4)
 
-Metais = [Ferro2,Ferro3,Cobre,Cromo,Litio,Niquel,Chumbo,Prata,Cobalto,Aluminio]
+Metais = [Ferro2,Ferro3,Cobre,Cromo,Litio,Niquel,Chumbo,Prata,Cobalto,Zinco]

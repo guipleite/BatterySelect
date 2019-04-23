@@ -19,7 +19,7 @@ class MainWindow(tk.Frame):
         t.geometry('500x500')
         t.wm_title("Montar Pilha")
 
-        listMetal = ['Ferro(2+)','Ferro(3+)','Cobre','Cromo','Lítio','Níquel','Chumbo','Prata','Cobalto','Alumínio'];
+        listMetal = ['Ferro(2+)','Ferro(3+)','Cobre','Cromo','Lítio','Níquel','Chumbo','Prata','Cobalto','Zinco'];
 
         label_0 = Label(t, text="Montar Pilha",width=20,font=("bold", 20))
         label_0.place(x=90,y=53)
@@ -88,7 +88,7 @@ class MainWindow(tk.Frame):
 
         sol1 = Solucoes(c1)
         sol2 = Solucoes(c2)
-        pilha = Pilha(metal1,metal2,sol1,sol2,temp)
+        pilha = Pilha(metal1,metal2,mm1,mm2,sol1,sol2,temp)
 
         pilha.catado_anodo()
 
@@ -98,56 +98,70 @@ class MainWindow(tk.Frame):
 
         pilha.calcula_cap_carga()
 
-        pilha.calcula_densidade_energia(mm1,mm2)
+        pilha.calcula_densidade_carga()
 
-        pilha.calcula_densidade_carga(mm1,mm2)
+        pilha.calcula_densidade_energia()
+
 
         potencia_pilha = round(pilha.E * pilha.CapCarga , 2)
 
         c = tk.Toplevel(self)
-        c.geometry('500x500')
+        c.geometry('500x600')
         c.wm_title("Pilha criada")
 
         ##Variaveis que serao mostradas
+        concentracao_a_ser_usada1 = "cloreto de " + metal1.Nome
+        concentracao_a_ser_usada2 = "cloreto de " + metal2.Nome
+
         ddp = pilha.E0
         esp = pilha.E
-        capa = round(pilha.CapCarga , 2)
-        densi = pilha.DensEnergia
-        densi = round(densi,2)
-        densiC = round(pilha.DensCarga,2)
+        capa = round(pilha.CapCarga , 4)
+        densiC = round(pilha.DensCarga,4)
+        densi = round(pilha.DensEnergia,4)
+
 
         label_0 = Label(c, text="Pilha Criada",width=20,font=("bold", 20))
         label_0.place(x=90,y=53)
 
+        label_sol1 = Label(c, text="Solução metal 1:",width=20,font=("bold", 10))
+        label_sol1.place(x=20,y=130)
+        label_sol12 = Label(c, text=concentracao_a_ser_usada1,width=30,font=("bold", 10))
+        label_sol12.place(x=180,y=130)
+
+        label_sol2 = Label(c, text="Solução metal 2:",width=20,font=("bold", 10))
+        label_sol2.place(x=20,y=150)
+        label_sol22 = Label(c, text=concentracao_a_ser_usada2,width=30,font=("bold", 10))
+        label_sol22.place(x=180,y=150)
+
         label_ddp = Label(c, text="DDP padrão",width=20,font=("bold", 10))
-        label_ddp.place(x=20,y=130)
+        label_ddp.place(x=20,y=180)
         label_ddp2 = Label(c, text=(ddp,"Volts"),width=30,font=("bold", 10))
-        label_ddp2.place(x=180,y=130)
+        label_ddp2.place(x=180,y=180)
 
         label_esp = Label(c, text="DDP especifica",width=20,font=("bold", 10))
-        label_esp.place(x=20,y=180)
+        label_esp.place(x=20,y=230)
         label_esp2 = Label(c, text=(esp,"Volts"),width=30,font=("bold", 10))
-        label_esp2.place(x=180,y=180)
+        label_esp2.place(x=180,y=230)
 
         label_capa = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
-        label_capa.place(x=20,y=230)
-        label_capa2 = Label(c, text=(capa,"mAh"),width=30,font=("bold", 10))
-        label_capa2.place(x=180,y=230)
+        label_capa.place(x=20,y=280)
+        label_capa2 = Label(c, text=(capa,"Ah"),width=30,font=("bold", 10))
+        label_capa2.place(x=180,y=280)
 
         label_pot = Label(c, text="Potência",width=20,font=("bold", 10))
-        label_pot.place(x=20,y=280)
-        label_pot2 = Label(c, text=(potencia_pilha,"W"),width=30,font=("bold", 10))
-        label_pot2.place(x=180,y=280)
+        label_pot.place(x=20,y=330)
+        label_pot2 = Label(c, text=(potencia_pilha,"Wh"),width=30,font=("bold", 10))
+        label_pot2.place(x=180,y=330)
 
         label_densi = Label(c, text="Densidade de Energia",width=20,font=("bold", 10))
-        label_densi.place(x=20,y=330)
+        label_densi.place(x=20,y=380)
         label_densi2 = Label(c, text=(densi,"J/kg"),width=30,font=("bold", 10))
-        label_densi2.place(x=180,y=330)
+        label_densi2.place(x=180,y=380)
 
         label_densic = Label(c, text="Densidade de Carga",width=20,font=("bold", 10))
-        label_densic.place(x=20,y=380)
+        label_densic.place(x=20,y=430)
         label_densic2 = Label(c, text=(densiC,"Ah/kg"),width=30,font=("bold", 10))
-        label_densic2.place(x=180,y=380)
+        label_densic2.place(x=180,y=430)
 
     def select_window(self):
         s = tk.Toplevel(self)
