@@ -3,13 +3,16 @@ import math
 
 class Metal:
 
-    def __init__(self,nome,ered,coef,eletrons,mmolar):
+    def __init__(self,nome,ered,coef,eletrons,mmolar,pmetal,psol):
         self.Nome = nome
         self.Ered = ered
         self.Coef = coef
         self.Eletrons = eletrons
         self.MMolar = mmolar
         self.csol = mmolar + (eletrons*35.5) #concentração da solução com cloreto
+
+        self.pmetal = pmetal
+        self.psol = psol # por grama
 
 
 
@@ -94,29 +97,34 @@ class Pilha:
         massa_solcatodo = (self.sol_catodo.Concetracao*self.V)*self.catodo.csol
         massa_solanodo = (self.sol_anodo.Concetracao*self.V)*self.anodo.csol
         self.DensCarga = (self.n*96500)/((self.massa_anodo+self.massa_catodo+massa_solcatodo+massa_solanodo)*0.001)
-        
+
 
     def calcula_densidade_energia(self):
 
         self.DensEnergia = self.DensCarga*self.E
 
+    def calcula_custo(self):
+
+        preco_metal = (self.massa_catodo * self.catodo.pmetal) + (self.massa_anodo * self.anodo.pmetal)
+        preco_solc = (self.sol_catodo.Concetracao*self.V)*self.catodo.csol
+        preco_sola = (self.sol_anodo.Concetracao*self.V)*self.anodo.csol
+
+        self.pfinal = preco_metal + preco_sola + preco_solc
 
 
 
 
 
-# 3 - precificar
 
-
-Ferro2 = Metal("Ferro(2+)",-0.44,1,2,56)
-Ferro3 = Metal("Ferro(3+)",-0.04,1,3,56)
-Cobre = Metal("Cobre",0.34,1,2,63.546)
-Cromo = Metal("Cromo",-0.74,1,3,52)
-Litio = Metal("Lítio",-3.04,1,1,6.94)
-Niquel = Metal("Níquel",-0.23,1,2,58.7)
-Chumbo = Metal("Chumbo",-0.13,1,2,207)
-Prata = Metal("Prata",0.80,1,1,108)
-Cobalto = Metal("Cobalto",-0.28,1,2,59)
-Zinco = Metal("Zinco",-0.76,1,2,65.4)
+Ferro2 = Metal("Ferro(2+)",-0.44,1,2,56,0.0032,34.72)
+Ferro3 = Metal("Ferro(3+)",-0.04,1,3,56,0.0032,23)
+Cobre = Metal("Cobre",0.34,1,2,63.546,0.04,78.9)
+Cromo = Metal("Cromo",-0.74,1,3,52,0.4,112.2)
+Litio = Metal("Lítio",-3.04,1,1,6.94,0.32,46.64)
+Niquel = Metal("Níquel",-0.23,1,2,58.7,0.16,7.3)
+Chumbo = Metal("Chumbo",-0.13,1,2,207,0.016,39.8)
+Prata = Metal("Prata",0.80,1,1,108,4,218.6)
+Cobalto = Metal("Cobalto",-0.28,1,2,59,4,16.56)
+Zinco = Metal("Zinco",-0.76,1,2,65.4,0.0276,106)
 
 Metais = [Ferro2,Ferro3,Cobre,Cromo,Litio,Niquel,Chumbo,Prata,Cobalto,Zinco]

@@ -102,6 +102,8 @@ class MainWindow(tk.Frame):
 
         pilha.calcula_densidade_energia()
 
+        pilha.calcula_custo()
+
 
         potencia_pilha = round(pilha.E * pilha.CapCarga , 2)
 
@@ -118,6 +120,9 @@ class MainWindow(tk.Frame):
         capa = round(pilha.CapCarga , 4)
         densiC = round(pilha.DensCarga,4)
         densi = round(pilha.DensEnergia,4)
+        preco = round(pilha.pfinal,2)
+
+
 
 
         label_0 = Label(c, text="Pilha Criada",width=20,font=("bold", 20))
@@ -162,6 +167,11 @@ class MainWindow(tk.Frame):
         label_densic.place(x=20,y=430)
         label_densic2 = Label(c, text=(densiC,"Ah/kg"),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=430)
+
+        label_densic = Label(c, text="Preço total da pilha",width=20,font=("bold", 10))
+        label_densic.place(x=20,y=480)
+        label_densic2 = Label(c, text=("R$",preco),width=30,font=("bold", 10))
+        label_densic2.place(x=180,y=480)
 
     def select_window(self):
         s = tk.Toplevel(self)
