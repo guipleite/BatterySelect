@@ -80,17 +80,9 @@ class Pilha:
 
         Pothora = self.CapCarga * self.E
         # Pothora * 3600 = Joule
-        self.DensEnergia = ( (Pothora * 3600) ) / (float(massa_eletrodo1)+float(massa_eletrodo2))
+        self.DensEnergia = ( (Pothora * 3600) ) / (0.001*(float(massa_eletrodo1)+float(massa_eletrodo2)))
 
 
-
-# class Bateria:
-#
-#     def __init__(self,DDP,potencia,Cap_Carga):
-#         self.ddp = ddp
-#         self.pot = potencia
-#         self.temp_lig = tempo_ligado
-#         self.cap_carga = Cap_Carga
 
 
 

@@ -98,7 +98,7 @@ class MainWindow(tk.Frame):
 
         pilha.calcula_cap_carga()
 
-        pilha.calcula_densidade_energia(0.001*mm1,0.001*mm2)
+        pilha.calcula_densidade_energia(mm1,mm2)
 
         potencia_pilha = round(pilha.E * pilha.CapCarga , 2)
 
