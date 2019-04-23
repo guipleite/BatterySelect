@@ -246,12 +246,12 @@ class MainWindow(tk.Frame):
 
         label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
         label_capa.place(x=20,y=90+m)
-        label_capa2 = Label(c, text=(self.ops.selecao1()[2][0],"pilhas"),width=30,font=("bold", 10))
+        label_capa2 = Label(c, text=(self.ops.selecao1()[2][0]),width=30,font=("bold", 10))
         label_capa2.place(x=180,y=90+m)
 
         label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
         label_pot.place(x=20,y=110+m)
-        label_pot2 = Label(c, text=(self.ops.selecao1()[1][0],"pilhas"),width=30,font=("bold", 10))
+        label_pot2 = Label(c, text=(self.ops.selecao1()[1][0]),width=30,font=("bold", 10))
         label_pot2.place(x=180,y=110+m)
 
         label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
@@ -284,12 +284,12 @@ class MainWindow(tk.Frame):
 
         label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
         label_capa.place(x=20,y=90+m+m+210+m)
-        label_capa2 = Label(c, text=(self.ops.selecao1()[2][1],"pilhas"),width=30,font=("bold", 10))
+        label_capa2 = Label(c, text=(self.ops.selecao1()[2][1]),width=30,font=("bold", 10))
         label_capa2.place(x=180,y=90+m+m+210+m)
 
         label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
         label_pot.place(x=20,y=110+m+m+210+m)
-        label_pot2 = Label(c, text=(self.ops.selecao1()[1][1],"pilhas"),width=30,font=("bold", 10))
+        label_pot2 = Label(c, text=(self.ops.selecao1()[1][1]),width=30,font=("bold", 10))
         label_pot2.place(x=180,y=110+m+m+210+m)
 
         label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
@@ -373,12 +373,12 @@ class MainWindow(tk.Frame):
 
         label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
         label_capa.place(x=20,y=90+m)
-        label_capa2 = Label(c, text=(self.ops.selecao2()[2][0],"pilhas"),width=30,font=("bold", 10))
+        label_capa2 = Label(c, text=(self.ops.selecao2()[2][0]),width=30,font=("bold", 10))
         label_capa2.place(x=180,y=90+m)
 
         label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
         label_pot.place(x=20,y=110+m)
-        label_pot2 = Label(c, text=(self.ops.selecao2()[1][0],"pilhas"),width=30,font=("bold", 10))
+        label_pot2 = Label(c, text=(self.ops.selecao2()[1][0]),width=30,font=("bold", 10))
         label_pot2.place(x=180,y=110+m)
 
         label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
@@ -411,12 +411,12 @@ class MainWindow(tk.Frame):
 
         label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
         label_capa.place(x=20,y=90+m+m+210+m)
-        label_capa2 = Label(c, text=(self.ops.selecao2()[2][1],"pilhas"),width=30,font=("bold", 10))
+        label_capa2 = Label(c, text=(self.ops.selecao2()[2][1]),width=30,font=("bold", 10))
         label_capa2.place(x=180,y=90+m+m+210+m)
 
         label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
         label_pot.place(x=20,y=110+m+m+210+m)
-        label_pot2 = Label(c, text=(self.ops.selecao2()[1][1],"pilhas"),width=30,font=("bold", 10))
+        label_pot2 = Label(c, text=(self.ops.selecao2()[1][1]),width=30,font=("bold", 10))
         label_pot2.place(x=180,y=110+m+m+210+m)
 
         label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
@@ -500,12 +500,12 @@ class MainWindow(tk.Frame):
 
         label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
         label_capa.place(x=20,y=90+m)
-        label_capa2 = Label(c, text=(self.ops.selecao3()[2][0],"pilhas"),width=30,font=("bold", 10))
+        label_capa2 = Label(c, text=(self.ops.selecao3()[2][0]),width=30,font=("bold", 10))
         label_capa2.place(x=180,y=90+m)
 
         label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
         label_pot.place(x=20,y=110+m)
-        label_pot2 = Label(c, text=(self.ops.selecao3()[1][0],"pilhas"),width=30,font=("bold", 10))
+        label_pot2 = Label(c, text=(self.ops.selecao3()[1][0]),width=30,font=("bold", 10))
         label_pot2.place(x=180,y=110+m)
 
         label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
@@ -539,12 +539,12 @@ class MainWindow(tk.Frame):
 
         label_capa = Label(c, text="Ligações em paralelo",width=20,font=("bold", 10))
         label_capa.place(x=20,y=90+m+m+210+m)
-        label_capa2 = Label(c, text=(self.ops.selecao3()[2][1],"pilhas"),width=30,font=("bold", 10))
+        label_capa2 = Label(c, text=(self.ops.selecao3()[2][1]),width=30,font=("bold", 10))
         label_capa2.place(x=180,y=90+m+m+210+m)
 
         label_pot = Label(c, text="Ligações em série",width=20,font=("bold", 10))
         label_pot.place(x=20,y=110+m+m+210+m)
-        label_pot2 = Label(c, text=(self.ops.selecao3()[1][1],"pilhas"),width=30,font=("bold", 10))
+        label_pot2 = Label(c, text=(self.ops.selecao3()[1][1]),width=30,font=("bold", 10))
         label_pot2.place(x=180,y=110+m+m+210+m)
 
         label_densic = Label(c, text="Capacidade de Carga",width=20,font=("bold", 10))
