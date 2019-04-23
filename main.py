@@ -279,7 +279,7 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao1()[5][0]),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=210+m)
 
-        label_name = Label(c, text=self.ops.selecao1()[9][0],width=25,font=("bold", 13))
+        label_name = Label(c, text=self.ops.selecao1()[9][1],width=30,font=("bold", 13))
         label_name.place(x=90,y=60+m+210+m)
 
         label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
@@ -385,7 +385,7 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao2()[5][0]),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=210+m)
 
-        label_name = Label(c, text=self.ops.selecao2()[9][0],width=25,font=("bold", 13))
+        label_name = Label(c, text=self.ops.selecao2()[9][1],width=25,font=("bold", 13))
         label_name.place(x=90,y=60+m+210+m)
 
         label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
@@ -489,7 +489,7 @@ class MainWindow(tk.Frame):
         label_densic2 = Label(c, text=(self.ops.selecao3()[5][0]),width=30,font=("bold", 10))
         label_densic2.place(x=180,y=210+m)
 
-        label_name = Label(c, text=self.ops.selecao3()[9][1],width=25,font=("bold", 13))
+        label_name = Label(c, text=self.ops.selecao3()[9][1],width=30,font=("bold", 13))
         label_name.place(x=90,y=60+m+210+m)
 
         label_ddp = Label(c, text="Preço Total",width=20,font=("bold", 10))
