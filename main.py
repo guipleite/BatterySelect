@@ -55,13 +55,13 @@ class MainWindow(tk.Frame):
         self.entry_3 = Entry(t)
         self.entry_3.place(x=280,y=330)
 
-        label_4 = Label(t, text="Massa do Metal 1 em kg",width=30,font=("bold", 10))
+        label_4 = Label(t, text="Massa do Metal 1 em g",width=30,font=("bold", 10))
         label_4.place(x=40,y=380)
 
         self.entry_4 = Entry(t)
         self.entry_4.place(x=280,y=380)
 
-        label_5 = Label(t, text="Massa do Metal 2 em kg",width=30,font=("bold", 10))
+        label_5 = Label(t, text="Massa do Metal 2 em g",width=30,font=("bold", 10))
         label_5.place(x=40,y=430)
 
         self.entry_5 = Entry(t)
@@ -98,7 +98,7 @@ class MainWindow(tk.Frame):
 
         pilha.calcula_cap_carga()
 
-        pilha.calcula_densidade_energia(mm1,mm2)
+        pilha.calcula_densidade_energia(0.001*mm1,0.001*mm2)
 
         potencia_pilha = round(pilha.E0 * pilha.CapCarga , 2)
 
