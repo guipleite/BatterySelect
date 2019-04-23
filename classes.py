@@ -34,13 +34,13 @@ class Pilha:
             self.sol_catodo = self.Solucao1
             self.anodo = self.Metal2
             self.sol_anodo = self.Solucao2
-            self.E = self.Metal1.Ered - self.Metal2.Ered
+            self.E0 = self.Metal1.Ered - self.Metal2.Ered
         else:
             self.catodo = self.Metal2
             self.sol_catodo = self.Solucao2
             self.anodo = self.Metal1
             self.sol_anodo = self.Solucao1
-            self.E = self.Metal2.Ered - self.Metal1.Ered
+            self.E0 = self.Metal2.Ered - self.Metal1.Ered
 
     def coeficientes(self):
         if self.catodo.Eletrons==self.anodo.Eletrons:
@@ -64,9 +64,9 @@ class Pilha:
 
         R = 8.31
         F = 96500
-        n = self.anodo.Eletrons + self.catodo.Eletrons
+        n = self.anodo.Eletrons + self.catodo.Eletrons # errado
 
-        self.E0 = self.E - ((R*self.Temp)/(n*F)) * math.log( ((self.sol_anodo.Concetracao)**self.coef_anodo )/
+        self.E = self.E0 - ((R*self.Temp)/(n*F)) * math.log( ((self.sol_anodo.Concetracao)**self.coef_anodo )/
                                                    ((self.sol_catodo.Concetracao)**self.coef_catodo ) )
 
 
@@ -78,7 +78,7 @@ class Pilha:
 
     def calcula_densidade_energia(self,massa_eletrodo1,massa_eletrodo2):
 
-        Pothora = self.CapCarga * self.E0
+        Pothora = self.CapCarga * self.E
         # Pothora * 3600 = Joule
         self.DensEnergia = ( (Pothora * 3600) ) / (float(massa_eletrodo1)+float(massa_eletrodo2))
 

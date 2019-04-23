@@ -100,15 +100,15 @@ class MainWindow(tk.Frame):
 
         pilha.calcula_densidade_energia(0.001*mm1,0.001*mm2)
 
-        potencia_pilha = round(pilha.E0 * pilha.CapCarga , 2)
+        potencia_pilha = round(pilha.E * pilha.CapCarga , 2)
 
         c = tk.Toplevel(self)
         c.geometry('500x500')
         c.wm_title("Pilha criada")
 
         ##Variaveis que serao mostradas
-        ddp = pilha.E
-        esp = pilha.E0
+        ddp = pilha.E0
+        esp = pilha.E
         capa = round(pilha.CapCarga , 2)
         densi = pilha.DensEnergia
         densi = round(densi,2)
